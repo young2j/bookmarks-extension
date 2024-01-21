@@ -1,0 +1,57 @@
+{
+  "name": "bookmarks",
+  "displayName": "Bookmarks",
+  "version": "0.0.1",
+  "description": "Say goodbye to messy bookmarks",
+  "author": "young2j",
+  "scripts": {
+    "dev": "plasmo dev --verbose",
+    "build": "plasmo build",
+    "package": "plasmo package"
+  },
+  "dependencies": {
+    "@formkit/auto-animate": "^0.8.1",
+    "@headlessui/react": "^1.7.18",
+    "@plasmohq/storage": "^1.9.0",
+    "cmdk": "^0.2.0",
+    "dayjs": "^1.11.10",
+    "iconoir-react": "^7.3.0",
+    "plasmo": "0.84.0",
+    "react": "18.2.0",
+    "react-countup": "^6.5.0",
+    "react-dom": "18.2.0",
+    "react-wrap-balancer": "^1.1.0",
+    "sonner": "^1.3.1",
+    "url-metadata": "^3.3.1",
+    "zustand": "^4.4.7"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "4.1.1",
+    "@parcel/optimizer-data-url": "2.9.3",
+    "@parcel/transformer-inline-string": "2.9.3",
+    "@plasmohq/parcel-transformer-manifest": "^0.17.8",
+    "@types/chrome": "0.0.251",
+    "@types/node": "20.9.0",
+    "@types/react": "18.2.37",
+    "@types/react-dom": "18.2.15",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "postcss": "^8.4.33",
+    "prettier": "3.0.3",
+    "tailwindcss": "^3.4.1",
+    "typescript": "5.2.2",
+    "vite": "^5.0.8"
+  },
+  "manifest": {
+    "host_permissions": [
+      "https://*/*"
+    ],
+    "permissions": [
+      "tabs"
+    ]
+  }
+}

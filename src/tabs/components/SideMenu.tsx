@@ -1,27 +1,22 @@
-import { Dialog, Disclosure, RadioGroup, Transition } from "@headlessui/react"
-import {
-  AlignJustify,
-  BinMinusIn,
-  Check,
-  Download,
-  Edit,
-  Folder,
-  FolderPlus,
-  Plus
-} from "iconoir-react"
-import { Fragment, useEffect, useRef, useState } from "react"
-import { toast } from "sonner/dist"
+import { Dialog, Disclosure, RadioGroup, Transition } from "@headlessui/react";
+import { AlignJustify, BinMinusIn, Check, Download, Edit, Folder, FolderPlus, Plus } from "iconoir-react";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { toast } from "sonner/dist";
 
-import useClickOutside from "../hooks/useClickOutside"
-import useDraggable from "../hooks/useDraggable"
-import { useBookmarkStore } from "../stores/BookmarkStore"
-import Button from "./Button"
-import { GroupStat } from "./Stat"
+
+
+import useClickOutside from "../hooks/useClickOutside";
+import useDraggable from "../hooks/useDraggable";
+import { useBookmarkStore } from "../stores/BookmarkStore";
+import Button from "./Button";
+import { GroupStat } from "./Stat";
+
 
 const SideMenu = () => {
   const {
     currentGroupName,
     setCurrentGroup,
+    getCurrentGroup,
     addGroup,
     renameGroup,
     deleteGroup,
@@ -32,6 +27,7 @@ const SideMenu = () => {
   } = useBookmarkStore((state) => ({
     currentGroupName: state.currentGroupName,
     setCurrentGroup: state.setCurrentGroup,
+    getCurrentGroup: state.getCurrentGroup,
     addGroup: state.addGroup,
     renameGroup: state.renameGroup,
     deleteGroup: state.deleteGroup,
@@ -84,7 +80,8 @@ const SideMenu = () => {
         const respose = await importData(content)
         if (respose.success) {
           toast.success(respose.data)
-          await getGroupBookmarks(currentGroupName)
+          const { data } = await getCurrentGroup()
+          await getGroupBookmarks(data)
           await listGroups()
         } else {
           toast.error(respose.data)
@@ -184,7 +181,6 @@ const Groups = ({
     await listGroups()
     const { data } = await getCurrentGroup()
     setSelectedGroup(data)
-    await getGroupBookmarks(data)
   }
 
   useEffect(() => {
@@ -310,6 +306,7 @@ const Groups = ({
           setRemoving={setRemoving}
           deleteGroup={deleteGroup}
           selectedGroup={selectedGroup}
+          getGroupBookmarks={getGroupBookmarks}
         />
       )}
     </div>
@@ -320,7 +317,8 @@ const RemoveDialog = ({
   removing,
   setRemoving,
   deleteGroup,
-  selectedGroup
+  selectedGroup,
+  getGroupBookmarks
 }) => {
   const onClickDelete = async () => {
     setRemoving(false)
@@ -328,6 +326,8 @@ const RemoveDialog = ({
     if (!response.success) {
       return toast.error(response.data)
     }
+    await getGroupBookmarks(response.data)
+
     toast.success("Group deleted successfully")
   }
 

@@ -1,13 +1,11 @@
-import { Pin } from "iconoir-react";
-import type { SyntheticEvent } from "react";
-import fallbackImage from "url:../assets/fallback.png";
+import { Pin } from "iconoir-react"
+import type { SyntheticEvent } from "react"
+import fallbackImage from "url:../assets/fallback.png"
 
-
-
-import { useBookmarkStore } from "../stores/BookmarkStore";
-import BookmarkDropdown from "./BookmarkDropdown";
-import BookmarkTags from "./BookmarkTags";
-import CardSpotlight from "./CardSpotlight";
+import { useBookmarkStore } from "../stores/BookmarkStore"
+import BookmarkDropdown from "./BookmarkDropdown"
+import BookmarkTags from "./BookmarkTags"
+import CardSpotlight from "./CardSpotlight"
 import Skeleton from "./Skeleton"
 
 const Bookmark = ({ bookmark }: { bookmark: Bookmark }) => {
@@ -76,7 +74,7 @@ const PinBadge = () => {
 }
 
 const IconPlaceHolder = ({ domain }: { domain: string }) => {
-  const letter = domain[0]?.toUpperCase() || "B"
+  const letter = domain?.replace(/^www\./, "")[0]?.toUpperCase() || "B"
 
   return (
     <div className="flex items-center justify-center w-4 h-4 rounded-full bg-zinc-800">

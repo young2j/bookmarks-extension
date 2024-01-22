@@ -1,14 +1,16 @@
-import { Pin } from "iconoir-react"
-import type { SyntheticEvent } from "react"
-import fallbackImage from "url:../assets/fallback.png"
+import { Pin } from "iconoir-react";
+import type { SyntheticEvent } from "react";
+import fallbackImage from "url:../assets/fallback.png";
 
-import { useBookmarkStore } from "../stores/BookmarkStore"
-import BookmarkDropdown from "./BookmarkDropdown"
-import BookmarkTags from "./BookmarkTags"
-import CardSpotlight from "./CardSpotlight"
+
+
+import { useBookmarkStore } from "../stores/BookmarkStore";
+import BookmarkDropdown from "./BookmarkDropdown";
+import BookmarkTags from "./BookmarkTags";
+import CardSpotlight from "./CardSpotlight";
 import Skeleton from "./Skeleton"
 
-const Bookmark = ({ bookmark }) => {
+const Bookmark = ({ bookmark }: { bookmark: Bookmark }) => {
   const loading = useBookmarkStore((state) => state.loading)
 
   const addImageFallback = (event: SyntheticEvent<HTMLImageElement, Event>) => {
@@ -31,12 +33,23 @@ const Bookmark = ({ bookmark }) => {
       </div>
       <div>
         <div className="flex items-center gap-2">
-          <img
-            src={`https://icon.horse/icon/${bookmark.domain}`}
-            alt={`${bookmark.title} icon`}
-            className="w-4 h-4"
-            onError={addImageFallback}
-          />
+          {!bookmark.icon ? (
+            <IconPlaceHolder domain={bookmark.domain} />
+          ) : (
+            <img
+              src={bookmark.icon}
+              alt={`${bookmark.title} icon`}
+              className="w-4 h-4"
+              onError={(e) => {
+                e.currentTarget.parentElement.replaceChild(
+                  (
+                    <IconPlaceHolder domain={bookmark.domain} />
+                  ) as unknown as Node,
+                  e.currentTarget
+                )
+              }}
+            />
+          )}
           <p className="font-medium truncate">{bookmark.title}</p>
           <BookmarkDropdown bookmark={bookmark} />
         </div>
@@ -58,6 +71,16 @@ const PinBadge = () => {
   return (
     <div className="absolute flex items-center justify-center w-6 h-6 rounded-full top-2 right-2 bg-zinc-800">
       <Pin width={16} />
+    </div>
+  )
+}
+
+const IconPlaceHolder = ({ domain }: { domain: string }) => {
+  const letter = domain[0]?.toUpperCase() || "B"
+
+  return (
+    <div className="flex items-center justify-center w-4 h-4 rounded-full bg-zinc-800">
+      {letter}
     </div>
   )
 }

@@ -66,11 +66,12 @@ const BookmarkDropdown = ({ bookmark }: Props) => {
   const refreshMetadata = async (url: string) => {
     const { data: newMetadata, success } = await getMetadata(url)
     if (!success) return toast.error("Failed to retrieve new metadata.")
-    const { title, domain, description, image } = newMetadata
+    const { title, domain, description, image, icon } = newMetadata
     if (
       bookmark.title === title &&
       bookmark.description === description &&
-      bookmark.image === image
+      bookmark.image === image &&
+      bookmark.icon === icon
     )
       return toast("No new data found.", {
         style: { backgroundColor: "#18181b", borderColor: "#3f3f46" }
@@ -78,7 +79,8 @@ const BookmarkDropdown = ({ bookmark }: Props) => {
     const response = await updateGroupBookmark(currentGroupName, bookmark.url, {
       title: title || domain,
       description,
-      image
+      image,
+      icon
     })
     if (!response.success) return toast.error(response.data)
     toast.success("Bookmark refreshed successfully!")

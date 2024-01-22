@@ -7,6 +7,7 @@ type Bookmark = {
   createdAt: string
   tags: string[]
   pinned: boolean
+  icon: string
 }
 
 // for state
@@ -31,4 +32,25 @@ type StoreBookmarkGroup = {
 
 type StoreBookmarkGroups = {
   [key: string]: StoreBookmarkGroup
+}
+
+type StoreData = {
+  showCase: boolean
+  firstUsedAt: string
+  currentGroupName: string
+  groups: StoreBookmarkGroups
+}
+
+type MetaData = {
+  url: string
+  title: string
+  domain: string
+  description: string
+  image: string
+  icon: string
+}
+
+type MetaDataResponse = {
+  data: MetaData | string
+  success: boolean
 }

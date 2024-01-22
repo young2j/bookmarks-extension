@@ -253,10 +253,11 @@ export const useBookmarkStore = create<BookmarkState>((set, get) => ({
         return { data: "Bookmark already exists!", success: false }
       }
 
-      const { data: metadata, success } = await getMetadata(url)
+      const { data, success }: MetaDataResponse = await getMetadata(url)
       if (!success) {
-        return { data: metadata, success: false }
+        return { data: data as string, success: false }
       }
+      const metadata = data as MetaData
       const newBookmark: Bookmark = {
         title: metadata.title || metadata.domain,
         domain: metadata.domain,
@@ -265,7 +266,8 @@ export const useBookmarkStore = create<BookmarkState>((set, get) => ({
         image: metadata.image,
         tags: [],
         createdAt: new Date().toLocaleString("zh-CN"),
-        pinned: false
+        pinned: false,
+        icon: metadata.icon
       }
       // update storage
       dbGroups[groupName].bookmarks = { ...dbBookmarks, [url]: newBookmark }
@@ -356,9 +358,19 @@ export const useBookmarkStore = create<BookmarkState>((set, get) => ({
   setSelectedTag: (tag) => set({ selectedTag: tag }),
 
   exportData: async () => {
-    const data = await store.getAll()
+    const showCase: boolean = await store.get("showCase")
+    const firstUsedAt: string = await store.get("firstUsedAt")
+    const currentGroupName: string = await store.get("currentGroupName")
+    const groups: StoreBookmarkGroups = await store.get("groups")
+    const data = {
+      showCase,
+      firstUsedAt,
+      currentGroupName,
+      groups
+    }
     return JSON.stringify(data)
   },
+
   importData: async (content) => {
     set({ loading: true })
     try {
@@ -367,12 +379,15 @@ export const useBookmarkStore = create<BookmarkState>((set, get) => ({
       if (firstUsedAt && firstUsedAt < dbFirstUsedAt) {
         await store.set("firstUsedAt", firstUsedAt)
       }
-      const dbGroups: StoreBookmarkGroups = await store.get("groups")
 
+      const dbGroups: StoreBookmarkGroups = await store.get("groups")
       Object.keys(groups).forEach((groupName) => {
-        const dbGroup = dbGroups[groupName] || { bookmarks: {} }
-        const newGroup = groups[groupName]
+        const dbGroup = dbGroups[groupName] || null
+        const newGroup: StoreBookmarkGroup = groups[groupName]
         if (!dbGroup) {
+          if (!newGroup.createdAt) {
+            newGroup.createdAt = new Date().toLocaleDateString()
+          }
           dbGroups[groupName] = newGroup
         } else {
           const dbBookmarks = dbGroup.bookmarks || {}

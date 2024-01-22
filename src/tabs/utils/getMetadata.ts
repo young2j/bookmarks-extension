@@ -1,11 +1,9 @@
 import urlMetadata from "url-metadata"
 
-type MetaData = {
-  url: string
-  title: string
-  domain: string
-  description: string
-  image: string
+type favicon = {
+  type: string
+  href: string
+  sizes: string
 }
 
 const getMetadata = async (url: string) => {
@@ -33,6 +31,17 @@ const getMetadata = async (url: string) => {
     const metadata = await urlMetadata(url, options)
     const _url = metadata.url.toString() || metadata["og:url"].toString() || url
     const domain = new URL(_url).hostname
+
+    const icons = (metadata.favicons as Array<favicon>) || []
+    let icon = ""
+    for (let item of icons) {
+      if (item.href) {
+        const iconHref = new URL(item.href, _url)
+        icon = iconHref.href
+        break
+      }
+    }
+
     const data = {
       url: _url,
       title: metadata.title.toString() || metadata["og:title"].toString(),
@@ -43,7 +52,8 @@ const getMetadata = async (url: string) => {
       image:
         metadata.image.toString() ||
         metadata["og:image"].toString() ||
-        metadata["twitter:image"].toString()
+        metadata["twitter:image"].toString(),
+      icon
     }
 
     return { data, success: true }

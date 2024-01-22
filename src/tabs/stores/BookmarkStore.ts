@@ -8,7 +8,9 @@ import getMetadata from "../utils/getMetadata"
 import isValidUrl from "../utils/isValidUrl"
 
 export const store = new Storage({
-  area: "sync"
+  // area: "sync"
+  //sync中,每个键值对的容量最大是8k，全部键值对总容量上限是100k；local中，对单个键值对容量无限制，总容量限制为5M
+  area: "local"
 })
 
 interface BookmarkState {

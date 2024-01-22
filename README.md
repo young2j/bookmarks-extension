@@ -1,7 +1,5 @@
 [English](./README.md) | [中文](./README.ZH_CN.md)
 
-
-
 <p align="center">
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/young2j/bookmarks-extension?color=56BEB8">
   <img alt="Github language count" src="https://img.shields.io/github/languages/count/young2j/bookmarks-extension?color=56BEB8">
@@ -22,9 +20,7 @@
 
 > 😡😡😡Dumping nuclear wastewater into the ocean, damn it! 💣🗾💥😤😤😤
 
-
-
-# :dart: About the Repository
+# 🎯 About the Repository
 
 This repository is forked from https://github.com/br4adam/bookmarks, an application designed to easily manage web bookmarks. Compared to the original repository, this repository mainly made the following changes:
 
@@ -32,12 +28,16 @@ This repository is forked from https://github.com/br4adam/bookmarks, an applicat
 * Removed the `supabase` dependency and related login authentication modules.
 * Added bookmark groups management.
 * Added bookmark import and export functions.
+* Changed the method of obtaining web page metadata, eliminating dependency on limited online services.
+* Altered the method of fetching icons, reducing reliance on limited online services.
 * Simplified some UI.
 * Other minor changes.
 
+![](./docs/popup.png)
 
+![](./docs/home.png)
 
-# :hammer: Technologies
+# 🔨 Technologies
 
 * [`react`](https://react.docschina.org/)
 * [`headlessui`](https://headlessui.com/)
@@ -46,9 +46,7 @@ This repository is forked from https://github.com/br4adam/bookmarks, an applicat
 * [`plasmo`](https://www.plasmo.com/)
 * [`pnpm`](https://www.pnpm.cn/)
 
-
-
-# :rocket: How to Run
+# 🚀 How to Run
 
 ## 1. Build from Source
 
@@ -67,15 +65,11 @@ Load the aforementioned unpacked extension at the `chrome` browser extension man
 
 Download the `bookmarks-extension.zip` directly from the [`releases`](https://github.com/young2j/bookmarks-extension/releases) page, unzip it, and load it at the `chrome` browser extension management page `chrome://extensions/`.
 
-
-
-# :handshake: Acknowledgments
+# 🤝 Acknowledgments
 
 [https://github.com/br4adam/bookmarks](https://github.com/br4adam/bookmarks)
 
-
-
-## :memo: License
+## 📝 License
 
 This project is licensed under the MIT License. For more details, see the [LICENSE](LICENSE.md) file.
 

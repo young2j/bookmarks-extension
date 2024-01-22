@@ -1,33 +1,73 @@
-This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
+[English](./README.md) | [Chinese Documentation](./README.ZH_CN.md)
 
-## Getting Started
+<p align="center">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/young2j/bookmarks-extension?color=56BEB8">
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/young2j/bookmarks-extension?color=56BEB8">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/young2j/bookmarks-extension?color=56BEB8">
+  <img alt="License" src="https://img.shields.io/github/license/young2j/bookmarks-extension?color=56BEB8">
+<img alt="Github forks" src="https://img.shields.io/github/forks/young2j/bookmarks-extension?color=56BEB8" />
+  <img alt="Github stars" src="https://img.shields.io/github/stars/young2j/bookmarks-extension?color=56BEB8" />
+</p>
 
-First, run the development server:
 
-```bash
-pnpm dev
-# or
-npm run dev
-```
+<p align="center">
+  <a href="#dart-about-the-repository">About the Repository</a>   |
+  <a href="#hammer-technologies">Technologies</a> |
+  <a href="#rocket-how-to-run">How to Run</a>   |  
+  <a href="#handshake-acknowledgments">Acknowledgments</a> | 
+  <a href="#memo-License">License</a>
+</p>
+<br>
 
-Open your browser and load the appropriate development build. For example, if you are developing for the chrome browser, using manifest v3, use: `build/chrome-mv3-dev`.
+> 😡😡😡Dumping nuclear wastewater into the ocean, damn it! 💣🗾💥😤😤😤
 
-You can start editing the popup by modifying `popup.tsx`. It should auto-update as you make changes. To add an options page, simply add a `options.tsx` file to the root of the project, with a react component default exported. Likewise to add a content page, add a `content.ts` file to the root of the project, importing some module and do some logic, then reload the extension on your browser.
 
-For further guidance, [visit our Documentation](https://docs.plasmo.com/)
 
-## Making production build
+# :dart: About the Repository
 
-Run the following:
+This repository is forked from https://github.com/br4adam/bookmarks, an application designed to easily manage web bookmarks. Compared to the original repository, this repository mainly made the following changes:
 
-```bash
+* Transformed into a Chrome extension.
+* Removed the `supabase` dependency and related login authentication modules.
+* Added bookmark groups management.
+* Added bookmark import and export functions.
+* Simplified some UI.
+* Other minor changes.
+
+# :hammer: Technologies
+
+* [`react`](https://react.docschina.org/)
+* [`headlessui`](https://headlessui.com/)
+* [`tailwindcss`](https://tailwind.nodejs.cn/)
+* [`zustand`](https://zustand-cn.js.org/)
+* [`plasmo`](https://www.plasmo.com/)
+* [`pnpm`](https://www.pnpm.cn/)
+
+# :rocket: How to Run
+
+## 1. Build from Source
+
+```shell
+git clone git@github.com:young2j/bookmarks-extension.git
+cd bookmarks-extension
+pnpm install
 pnpm build
-# or
-npm run build
 ```
 
-This should create a production bundle for your extension, ready to be zipped and published to the stores.
+After that, a folder named `chrome-mv3-prod` will be generated in the `build/` directory.
 
-## Submit to the webstores
+Load the aforementioned unpacked extension at the `chrome` browser extension management page `chrome://extensions/`.
 
-The easiest way to deploy your Plasmo extension is to use the built-in [bpp](https://bpp.browser.market) GitHub action. Prior to using this action however, make sure to build your extension and upload the first version to the store to establish the basic credentials. Then, simply follow [this setup instruction](https://docs.plasmo.com/framework/workflows/submit) and you should be on your way for automated submission!
+## 2. Download the Released zip File
+
+Download the `bookmarks-extension.zip` directly from the [`releases`](https://github.com/young2j/bookmarks-extension/releases) page, unzip it, and load it at the `chrome` browser extension management page `chrome://extensions/`.
+
+# :handshake: Acknowledgments
+
+[https://github.com/br4adam/bookmarks](https://github.com/br4adam/bookmarks)
+
+## :memo: License
+
+This project is licensed under the MIT License. For more details, see the [LICENSE](LICENSE.md) file.
+
+Made with ❤️ by [young2j](https://github.com/young2j)

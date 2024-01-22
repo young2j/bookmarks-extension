@@ -15,8 +15,9 @@ const BookmarkTags = ({ bookmark }: Props) => {
       updateGroupBookmark: state.updateGroupBookmark
     })
   )
+
   const [editable, setEditable] = useState(false)
-  const [newTags, setNewTags] = useState(bookmark.tags.join(", "))
+  const [newTags, setNewTags] = useState(bookmark.tags?.join(", "))
 
   const formRef = useRef<HTMLFormElement>()
   useClickOutside(formRef, () => setEditable(false))
@@ -38,7 +39,7 @@ const BookmarkTags = ({ bookmark }: Props) => {
     <div
       className="flex flex-wrap gap-2 mb-2 font-mono text-xs"
       onClick={() => setEditable(true)}>
-      {!bookmark.tags.length && !editable && (
+      {!bookmark.tags?.length && !editable && (
         <p className="py-1 border-b border-transparent text-zinc-500">
           add tags...
         </p>
@@ -61,7 +62,7 @@ const BookmarkTags = ({ bookmark }: Props) => {
           </button>
         </form>
       ) : (
-        bookmark.tags.map((tag) => (
+        bookmark.tags?.map((tag) => (
           <span
             key={tag}
             className="px-2 py-1 truncate border-b border-transparent rounded-md bg-zinc-700/50 text-zinc-400">

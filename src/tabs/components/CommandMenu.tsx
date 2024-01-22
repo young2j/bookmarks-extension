@@ -48,7 +48,7 @@ const CommandMenu = () => {
           {bookmarks.map((bookmark) => (
             <Command.Item
               key={bookmark.url}
-              value={`${bookmark.title} ${bookmark.url} ${bookmark.tags.join(
+              value={`${bookmark.title} ${bookmark.url} ${bookmark.tags?.join(
                 " "
               )}`}
               onSelect={() => window.open(bookmark.url, "_blank")}>

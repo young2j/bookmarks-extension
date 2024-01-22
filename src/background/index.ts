@@ -1,6 +1,10 @@
-import { store } from "~tabs/stores/BookmarkStore"
-import isTabAdded from "~tabs/utils/isTabAdded"
-import setBadge from "~tabs/utils/setBadge"
+import { store } from "~tabs/stores/BookmarkStore";
+import isTabAdded from "~tabs/utils/isTabAdded";
+import setBadge from "~tabs/utils/setBadge";
+
+
+
+
 
 const initInstalled = async ({ reason }) => {
   if (reason === "install") {
@@ -12,7 +16,7 @@ const initInstalled = async ({ reason }) => {
       groups: {
         default: {
           name: "default",
-          bookmarks: [],
+          bookmarks: {},
           createdAt: firstDate
         }
       }

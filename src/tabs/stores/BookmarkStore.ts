@@ -1,11 +1,18 @@
-import { create } from "zustand"
+import { create } from "zustand";
 
-import { Storage } from "@plasmohq/storage"
 
-import isTabAdded from "~tabs/utils/isTabAdded"
 
-import getMetadata from "../utils/getMetadata"
-import isValidUrl from "../utils/isValidUrl"
+import { Storage } from "@plasmohq/storage";
+
+
+
+import isTabAdded from "~tabs/utils/isTabAdded";
+
+
+
+import getMetadata from "../utils/getMetadata";
+import isValidUrl from "../utils/isValidUrl";
+
 
 export const store = new Storage({
   // area: "sync"
@@ -212,7 +219,7 @@ export const useBookmarkStore = create<BookmarkState>((set, get) => ({
     const groups = Object.values(dbGroups).map((group) => {
       const bookmarks: Bookmark[] = Object.values(group.bookmarks || {})
       const tagsCount = bookmarks.reduce(
-        (total, bookmark) => total + bookmark.tags.length,
+        (total, bookmark) => total + (bookmark.tags?.length || 0),
         0
       )
       return {

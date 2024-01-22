@@ -12,7 +12,7 @@ const Bookmarks = () => {
   if (!bookmarks.length && !loading) return <EmptyState />
 
   let filteredBookmarks = selectedTag
-    ? bookmarks.filter((bookmark) => bookmark.tags.includes(selectedTag))
+    ? bookmarks.filter((bookmark) => bookmark.tags?.includes(selectedTag))
     : bookmarks
   filteredBookmarks = filteredBookmarks.sort((a, b) =>
     a.pinned === b.pinned ? 0 : a.pinned ? -1 : 1

@@ -1,4 +1,6 @@
-[English](./README.md) | [Chinese Documentation](./README.ZH_CN.md)
+[English](./README.md) | [中文](./README.ZH_CN.md)
+
+
 
 <p align="center">
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/young2j/bookmarks-extension?color=56BEB8">
@@ -8,7 +10,6 @@
 <img alt="Github forks" src="https://img.shields.io/github/forks/young2j/bookmarks-extension?color=56BEB8" />
   <img alt="Github stars" src="https://img.shields.io/github/stars/young2j/bookmarks-extension?color=56BEB8" />
 </p>
-
 
 <p align="center">
   <a href="#dart-about-the-repository">About the Repository</a>   |
@@ -34,6 +35,8 @@ This repository is forked from https://github.com/br4adam/bookmarks, an applicat
 * Simplified some UI.
 * Other minor changes.
 
+
+
 # :hammer: Technologies
 
 * [`react`](https://react.docschina.org/)
@@ -42,6 +45,8 @@ This repository is forked from https://github.com/br4adam/bookmarks, an applicat
 * [`zustand`](https://zustand-cn.js.org/)
 * [`plasmo`](https://www.plasmo.com/)
 * [`pnpm`](https://www.pnpm.cn/)
+
+
 
 # :rocket: How to Run
 
@@ -62,9 +67,13 @@ Load the aforementioned unpacked extension at the `chrome` browser extension man
 
 Download the `bookmarks-extension.zip` directly from the [`releases`](https://github.com/young2j/bookmarks-extension/releases) page, unzip it, and load it at the `chrome` browser extension management page `chrome://extensions/`.
 
+
+
 # :handshake: Acknowledgments
 
 [https://github.com/br4adam/bookmarks](https://github.com/br4adam/bookmarks)
+
+
 
 ## :memo: License
 
